@@ -1,0 +1,19 @@
+[project]
+name = "outbound-qa"
+version = "0.4.0"
+description = "Pre-send checks for cold email: a batch linter, a reply gate for follow-ups, and a send-volume planner."
+requires-python = ">=3.10"
+dependencies = ["pyyaml>=6.0"]
+
+[project.optional-dependencies]
+dev = ["pytest>=7"]
+
+[project.scripts]
+outboundqa = "outboundqa.cli:main"
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+include = ["outboundqa*"]

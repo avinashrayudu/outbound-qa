@@ -1,0 +1,52 @@
+# Default rules. Copy this file and pass --rules to change them.
+
+words: {min: 50, max: 125}
+subject: {max_words: 6, require_lowercase: true}
+max_links: 0              # first touches carry no links; they hurt deliverability
+max_metrics: 1            # one number per email; three numbers read like a resume
+min_you_ratio: 1.0        # "you/your" should appear at least as often as "I/my"
+max_grade: 9              # Flesch-Kincaid grade level
+min_sentence_spread: 4    # std dev of sentence length; low = robotic rhythm
+max_adjacent_one_liners: 3
+
+banned_phrases:
+  - "i hope this email finds you well"
+  - "i hope this finds you well"
+  - "i wanted to reach out"
+  - "just following up"
+  - "just checking in"
+  - "touch base"
+  - "circle back"
+  - "quick question"
+  - "synergy"
+  - "leverage"
+  - "game-changer"
+  - "cutting-edge"
+  - "revolutionize"
+  - "i came across your profile"
+  - "hope you're doing well"
+  - "i'd love to"
+  - "i am interested in"
+
+# Openers that announce the email instead of saying something.
+envelope_openers:
+  - "^i'?m (writing|reaching out)"
+  - "^this is a (quick )?note"
+  - "^my name is"
+  - "^i wanted to"
+  - "^i? ?hope"
+
+# Closers that propose a meeting nobody asked for, as a fragment.
+weak_closers:
+  - "^(whenever|anytime) (works|suits)"
+  - "^happy to (fit|work around)"
+  - "^(next|this) week is (open|free)"
+  - "^let me know\\.?$"
+  - "^looking forward"
+
+# Batch checks
+batch:
+  max_same_opener_share: 0.2    # no opener shape in more than 20% of the batch
+  max_same_closer_share: 0.2
+  max_emails_per_domain: 1      # one person per company per send day
+  shape_words: 4                # first/last N words define a "shape"
