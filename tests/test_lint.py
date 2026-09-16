@@ -3,7 +3,7 @@ from pathlib import Path
 
 from outboundqa import text as T
 from outboundqa.io import read_drafts
-from outboundqa.lint import Draft, check_draft, lint, load_rules
+from outboundqa.lint import EM_DASH, Draft, check_draft, lint, load_rules
 
 ROOT = Path(__file__).resolve().parents[1]
 RULES = load_rules()
@@ -37,7 +37,7 @@ def test_bad_draft_hits_the_expected_rules():
 
 
 def test_em_dash_and_fake_reply_subject():
-    d = Draft("x", "a@b.com", "RE: hello", "Hi A,\n\nThis line has an em dash — right here. " * 6)
+    d = Draft("x", "a@b.com", "RE: hello", f"Hi A,\n\nThis line has an em dash {EM_DASH} right here. " * 6)
     hit = rules_hit(d)
     assert "em_dash" in hit and "fake_reply_subject" in hit
 

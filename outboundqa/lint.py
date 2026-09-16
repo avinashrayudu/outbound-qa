@@ -60,6 +60,7 @@ class Report:
         }
 
 
+EM_DASH = chr(0x2014)
 ROLE_INBOX = re.compile(r"^(info|hello|hi|hey|sales|contact|team|support|admin|orders|founders|office)@")
 
 
@@ -84,7 +85,7 @@ def check_draft(d: Draft, rules: dict) -> list[Finding]:
     if d.subject.lower().startswith(("re:", "fwd:")):
         add("fake_reply_subject", d.subject)
 
-    if "—" in body or "—" in d.subject:
+    if EM_DASH in body or EM_DASH in d.subject:
         add("em_dash", "contains an em dash")
 
     for phrase in rules["banned_phrases"]:
